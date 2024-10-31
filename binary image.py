@@ -1,5 +1,5 @@
 from PIL import Image
-import 
+import matplotlib.pyplot as plt
 
 # Load the image
 image = Image.open('E:/Project/Charity Project Resources/191. front_end_html/uploads/cause_photo_1704072157.jpg')
@@ -20,8 +20,8 @@ ax[0].imshow(image)
 ax[0].axis('off')
 ax[0].set_title('Original Image')
 
-ax[1].imshow(negative_image)
+ax[1].imshow(binary_image)
 ax[1].axis('off')
-ax[1].set_title('Negative Image')
+ax[1].set_title('Binary Image')
 plt.show()
 binary_image.show()

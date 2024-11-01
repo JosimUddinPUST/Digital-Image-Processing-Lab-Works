@@ -3,7 +3,7 @@ import numpy as np
 
 # Load the image
 # image = Image.open('E:\Project\Charity Project Resources\191. front_end_html\uploads\cause_photo_1704072157.jpg')
-image = Image.open('E:/Project/Charity Project Resources/191. front_end_html/uploads/cause_photo_1704072157.jpg')
+image = Image.open('D:\OneDrive\Desktop\image for lab.jpg')
 
 # Convert the image to grayscale
 gray_image = image.convert('L')

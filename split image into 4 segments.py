@@ -6,8 +6,7 @@ print(cv2.__version__)
 
 
 # Load the image
-image = Image.open('E:/Project/Charity Project Resources/191. front_end_html/uploads/cause_photo_1704072157.jpg')
-
+image = Image.open('d:\OneDrive\Desktop\DIP Image.png')
 # Convert image to a numpy array
 image_array = np.array(image)
 
@@ -27,7 +26,7 @@ merged_image = np.concatenate((top, bottom), axis=0)
 
 
 # Plot the original segments and the merged image
-fig, ax = plt.subplots(2, 3, figsize=(15, 5))
+fig, ax = plt.subplots(2, 3, figsize=(12, 5))
 
 # Display each segment without labels
 ax[0][0].imshow(top_left)

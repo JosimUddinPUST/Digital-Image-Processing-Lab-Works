@@ -1,23 +1,25 @@
-from PIL import Image, ImageOps
+from PIL import Image
 import matplotlib.pyplot as plt
+import numpy as np
 
-# Load the image
-image = Image.open('E:/Project/Charity Project Resources/191. front_end_html/uploads/cause_photo_1704072157.jpg')
+image=Image.open("D:\\OneDrive\\Desktop\\DIP Image.png").convert('RGB')
 
-# Convert image to RGB mode if it is not (ImageOps.invert requires RGB or L mode)
-if image.mode != 'RGB':
-    image = image.convert('RGB')
+image_array=np.array(image)
 
-# Invert the image (create negative)
-negative_image = ImageOps.invert(image)
+negative_image_array= 255-image_array
 
-fig, ax=plt.subplots(1,2)
 
-ax[0].imshow(image)
-ax[0].axis('off')
-ax[0].set_title('Original Image')
+negative_image=Image.fromarray(negative_image_array)
 
-ax[1].imshow(negative_image)
-ax[1].axis('off')
-ax[1].set_title('Negative Image')
+plt.figure(figsize=(10,5))
+plt.subplot(1,2,1)
+plt.title("Original Image")
+plt.imshow(image)
+plt.axis("off")
+
+plt.subplot(1,2,2)
+plt.title("Negative Image")
+plt.imshow(negative_image)
+plt.axis("off")
+
 plt.show()

@@ -1,27 +1,37 @@
 from PIL import Image
+import numpy as np
 import matplotlib.pyplot as plt
 
-# Load the image
-image = Image.open('E:/Project/Charity Project Resources/191. front_end_html/uploads/cause_photo_1704072157.jpg')
+# Load the image and convert it to grayscale for binary processing
+image = Image.open("lab_image.jpg").convert("L")
 
-# Convert the image to grayscale
-gray_image = image.convert('L')
+# Convert the grayscale image to a NumPy array
+image_array = np.array(image)
+height, width= image_array.shape
+total_pixels = height * width
 
-# Define the threshold value (128 is common, but you can adjust it)
+# Flatten the array for easier thresholding
+binary_image = np.zeros(total_pixels, dtype=np.uint8)
 threshold = 128
 
-# Apply the threshold to convert the grayscale image to binary
-binary_image = gray_image.point(lambda x: 255 if x > threshold else 0, mode='1')
+# Apply threshold to convert the image to binary
+for i in range(total_pixels):
+    binary_image[i] = 0 if image_array.flatten()[i] <= threshold else 255
 
-# Display the binary image
-fig, ax=plt.subplots(1,2)
+# Reshape binary image to the original dimensions
+binary_image = binary_image.reshape((height, width))
 
-ax[0].imshow(image)
-ax[0].axis('off')
-ax[0].set_title('Original Image')
+# Convert to PIL Image for display
+b_img=Image.fromarray(binary_image)
 
-ax[1].imshow(binary_image)
-ax[1].axis('off')
-ax[1].set_title('Binary Image')
+plt.figure(figsize=(12,6))
+plt.subplot(1,2,1)
+plt.title("Original Image")
+plt.imshow(image,cmap="gray")
+plt.axis('off')
+
+plt.subplot(1,2,2)
+plt.title("Binary Image")
+plt.imshow(b_img,cmap="gray")
+plt.axis('off')
 plt.show()
-binary_image.show()
